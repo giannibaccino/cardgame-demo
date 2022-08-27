@@ -32,12 +32,15 @@ export class ApiService {
     }));
   }
 
-  //TODO: consulta de mis juegos
-  getMisJuegos(uid: string) { }
+  getMisJuegos(uid: string) { 
+    return this.http.get(environment.apiBase + '/juego/listar/' + uid);
+  }
 
-  //TODO: consulta de mi mazo
-  getMiMazo(uid: string, juegoId: string) { }
+  getMiMazo(uid: string, juegoId: string) { 
+    return this.http.get(environment.apiBase + '/juego/' + juegoId + '/getMazo/' + uid);
+  }
 
-  //TODO: consulta tablero del juego
-  getTablero(juegoId: string) { }
+  getTablero(juegoId: string) { 
+    return this.http.get(environment.apiBase + '/juego/getTablero/' + juegoId);
+  }
 }

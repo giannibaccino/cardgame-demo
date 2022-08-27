@@ -2,6 +2,8 @@ package org.example.cardgame.application.handle;
 
 
 import org.example.cardgame.application.handle.model.JuegoListViewModel;
+import org.example.cardgame.application.handle.model.MazoViewModel;
+import org.example.cardgame.application.handle.model.TableroViewModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
@@ -39,13 +41,29 @@ public class QueryHandle {
     }
 
 
-    //TODO: obtener tablero
     @Bean
-    public RouterFunction<ServerResponse> getTablero() { return null; }
+    public RouterFunction<ServerResponse> getTablero() {
+        return route(
+                GET("/juego/getTablero/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> template.find(filterByUId(request.pathVariable("id")), TableroViewModel.class, "gameview")
+                        .collectList()
+                        .flatMap(list -> ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(BodyInserters.fromPublisher(Flux.fromIterable(list), TableroViewModel.class)))
+        );
+    }
 
-    //TODO: obtener mazo
     @Bean
-    public RouterFunction<ServerResponse> getMazo() {return null;}
+    public RouterFunction<ServerResponse> getMazo() {
+        return route(
+                GET("/juego/{id}/getMazo/{uid}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> template.find(filterByUIdAndJuegoId(request.pathVariable("id"),request.pathVariable("uid")), MazoViewModel.class, "gameview")
+                        .collectList()
+                        .flatMap(list -> ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(BodyInserters.fromPublisher(Flux.fromIterable(list), MazoViewModel.class)))
+        );
+    }
 
     private Query filterByUId(String uid) {
         return new Query(
@@ -53,5 +71,10 @@ public class QueryHandle {
         );
     }
 
-
+    private Query filterByUIdAndJuegoId(String uid, String juegoId) {
+        return new Query(
+                Criteria.where("uid").is(uid)
+                        .and("id").is(juegoId)
+        );
+    }
 }

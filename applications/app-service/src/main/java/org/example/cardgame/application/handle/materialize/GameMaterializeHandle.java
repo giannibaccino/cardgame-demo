@@ -44,40 +44,66 @@ public class GameMaterializeHandle {
     public void handleJugadorAgregado(JugadorAgregado event) {
         var data = new Update();
         data.set("fecha", Instant.now());
-        data.set("jugadores."+event.getJuegoId().value()+".alias", event.getAlias());
-        data.set("jugadores."+event.getJuegoId().value()+".jugadorId", event.getJuegoId().value());
+        data.set("jugadores."+event.getJugadorId().value()+".alias", event.getAlias());
+        data.set("jugadores."+event.getJugadorId().value()+".jugadorId", event.getJugadorId().value());
         data.inc("cantidadJugadores");
         template.updateFirst(getFilterByAggregateId(event), data, COLLECTION_VIEW).block();
     }
 
-    //TODO: handle tablero creado
     @EventListener
-    public void handleTableroCreado(TableroCreado event) { }
+    public void handleTableroCreado(TableroCreado event) {
+        var data = new HashMap<>();
+        data.put("tableroId", event.getTableroId());
+        data.put("jugadores", event.getJugadorIds());
+        template.save(data, COLLECTION_VIEW).block();
+    }
 
-    //TODO: handle Carta Puesta En Tablero
     @EventListener
-    public void handleCartaPuestaEnTablero(CartaPuestaEnTablero event) {}
+    public void handleCartaPuestaEnTablero(CartaPuestaEnTablero event) {
+        var data = new HashMap<>();
+        data.put("tableroId", event.getTableroId());
+        data.put("uid", event.getJugadorId());
+        data.put("_carta", event.getCarta());
+        template.save(data, COLLECTION_VIEW).block();
+    }
 
-    //TODO: handle para crear ronda
     @EventListener
-    public void handleRondaCreada(RondaCreada event) {}
+    public void handleRondaCreada(RondaCreada event) {
+        var data = new HashMap<>();
+        data.put("ronda", event.getRonda());
+        data.put("tiempo", event.getTiempo());
+        template.save(data, COLLECTION_VIEW).block();
+    }
 
-    //TODO: handle tiempo cambiado del tablero
     @EventListener
-    public void handleTiempoCambiadoDelTablero(TiempoCambiadoDelTablero event){}
+    public void handleTiempoCambiadoDelTablero(TiempoCambiadoDelTablero event){
+        var data = new Update();
+        data.set("tableroId", event.getTableroId());
+        data.set("tiempo", event.getTiempo());
+        template.updateFirst(getFilterByAggregateId(event), data, COLLECTION_VIEW).block();
+    }
 
-    //TODO: handle para terminar la ronda
     @EventListener
-    public void handleRondaTerminada(RondaTerminada event){}
+    public void handleRondaTerminada(RondaTerminada event){
+        var data = new HashMap<>();
+        data.put("tableroId", event.getTableroId());
+        data.put("jugadores", event.getJugadorIds());
+        template.save(data, COLLECTION_VIEW).block();
+    }
 
-    //TODO: handle para iniciar la ronda
     @EventListener
-    public void handleRondaIniciada(RondaIniciada event){}
+    public void handleRondaIniciada(RondaIniciada event){
+        var data = new HashMap<>();
+        template.save(data, COLLECTION_VIEW).block();
+    }
 
-    //TODO: handle para finalizar evento
     @EventListener
-    public void handleJuegoFinalizado(JuegoFinalizado event){}
-
+    public void handleJuegoFinalizado(JuegoFinalizado event){
+        var data = new HashMap<>();
+        data.put("uid", event.getJugadorId());
+        data.put("alias", event.getAlias());
+        template.save(data, COLLECTION_VIEW).block();
+    }
 
     private Query getFilterByAggregateId(DomainEvent event) {
         return new Query(

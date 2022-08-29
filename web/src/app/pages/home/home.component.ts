@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Clipboard } from '@angular/cdk/clipboard'
 
 //TODO: componente home para redireccion y enrutado
 @Component({
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private clipboard:Clipboard) { }
 
   ngOnInit(): void {
   }
@@ -19,8 +20,8 @@ export class HomeComponent implements OnInit {
   }
 
   invitation(){
-    alert("Comparte este URL: https://localhost:4200");
-    console.log("COPIED URL");
+    this.clipboard.copy("http://localhost:4200/menu");
+    alert("URL COPIADA");
   }
 
   onclickList(){

@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public auth:AuthService) {
+  constructor(public auth:AuthService, private router:Router) {
    }
 
   ngOnInit(): void {
@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
 
   logOut(){
     this.auth.signOut()
+    .then(() => this.router.navigate(['menu']))
     .catch(err => console.log(err));
   }
 

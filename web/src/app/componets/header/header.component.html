@@ -7,8 +7,8 @@
         
         <a routerLink="/home" class="nav-link" [ngSwitch]="auth.isLoggedIn"><span *ngSwitchCase="true">Inicio</span></a>
         <a routerLink="/list" class="nav-link" [ngSwitch]="auth.isLoggedIn"><span *ngSwitchCase="true">Lista de juegos</span></a>
-        <a routerLink="/login" class="nav-link" (click)="logOut()" [ngSwitch]="auth.isLoggedIn"> <span *ngSwitchCase="true">Logout</span>
-            <span *ngSwitchCase="false">Login</span> </a>
+        <a class="nav-link" [ngSwitch]="auth.isLoggedIn"> <span *ngSwitchCase="true" (click)="logOut()">Logout</span>
+            <span routerLink="/login" *ngSwitchCase="false">Login</span> </a>
         
     </nav>
 </header>

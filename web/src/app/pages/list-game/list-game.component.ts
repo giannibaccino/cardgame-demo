@@ -32,7 +32,11 @@ export class ListGameComponent implements OnInit {
 
   startGame(){
     console.log("Game Started");
-    //this.api.iniciarJuego();
+
+    this.api.iniciarJuego({
+      juegoId:this.uid
+    }).subscribe;
+
     this.router.navigate(['board']);
   }
 }

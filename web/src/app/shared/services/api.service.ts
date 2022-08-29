@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CrearJuegoCommand } from '../commands/crearJuegoCommand';
+import { IniciarJuegoCommand } from '../commands/iniciarJuegoCommand';
 import { Jugador } from '../model/juego';
 import { User } from '../model/user';
 
@@ -19,6 +20,10 @@ export class ApiService {
 
   crearJuego(command: CrearJuegoCommand) {
     return this.http.post(environment.apiBase + '/juego/crear', command);
+  }
+
+  iniciarJuego(command: IniciarJuegoCommand){
+    return this.http.put(environment.apiBase + '/juego/iniciar', command);
   }
 
  
@@ -37,10 +42,10 @@ export class ApiService {
   }
 
   getMiMazo(uid: string, juegoId: string) { 
-    return this.http.get(environment.apiBase + '/juego/' + juegoId + '/getMazo/' + uid);
+    return this.http.get(environment.apiBase + '/juego/mazo/' + uid + "/" + juegoId);
   }
 
   getTablero(juegoId: string) { 
-    return this.http.get(environment.apiBase + '/juego/getTablero/' + juegoId);
+    return this.http.get(environment.apiBase + '/juego/' + juegoId);
   }
 }

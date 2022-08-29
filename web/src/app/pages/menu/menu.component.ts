@@ -8,20 +8,18 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit, OnDestroy {
   audio = new Audio();
 
-  constructor() { 
-    this.audio.src = "../assets/Marvel-theme.mp3";
-    this.audio.loop = true;
-    //this.audio.load();
-    this.audio.play(); 
+  constructor() {  
   }
 
   ngOnDestroy(): void {
     this.audio.pause();
-    
   }
 
-  ngOnInit() {  
-    
+  ngOnInit() { 
+    this.audio.src = "../assets/Marvel-theme.mp3";
+    this.audio.loop = true;
+    this.audio.load();
+    this.audio.play();
   }
 
 }

@@ -14,15 +14,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-game.component.scss']
 })
 export class NewGameComponent implements OnInit, OnDestroy {
-  form: FormGroup;
+  //form: FormGroup;
   juegoId: string;
   jugadores?: Jugador[];
   jugadoresSelected: Jugador[] = new Array<Jugador>();;
 
   constructor(private api: ApiService, private auth: AuthService, private socket:WebsocketService, private router:Router) {
-    this.form = new FormGroup({
-      jugador: new FormControl()
-    });
+    //this.form = new FormGroup({
+    //  jugador: new FormControl()
+    //});
     this.juegoId = uuidv1();
      
     api.getJugadores().subscribe((jugadores) => {

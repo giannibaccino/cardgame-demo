@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 
 //TODO: componente home para redireccion y enrutado
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
@@ -20,7 +19,8 @@ export class HomeComponent implements OnInit {
   }
 
   invitation(){
-    alert("Comparte este URL : http://localhost:4200/menu");
+    alert("Comparte este URL: https://localhost:4200");
+    console.log("COPIED URL");
   }
 
   onclickList(){

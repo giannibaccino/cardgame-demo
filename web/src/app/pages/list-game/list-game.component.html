@@ -19,10 +19,10 @@
           </td>
 
           <td *ngSwitchCase="false" [ngSwitch]="juego.iniciado" >
-            <button *ngSwitchCase="!false" value="{{ juego.id }}" (click)="startGame()">
+            <button *ngSwitchCase="false" value="{{ juego.id }}" (click)="startGame()">
               Iniciar
             </button>
-            <button class="join" *ngSwitchCase="!true" value="{{ juego.id }}" (click)="joinGame()">
+            <button class="join" *ngSwitchCase="true" value="{{ juego.id }}" (click)="joinGame()">
               Unirse
             </button>
           </td>
@@ -34,10 +34,3 @@
     </div>
   </div>
 </div>
-<style>
-  .displayTable{
-  background-image: url('https://wallpaper.dog/large/20461297.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-</style>

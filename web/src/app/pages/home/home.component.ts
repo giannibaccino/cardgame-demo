@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   }
 
   onclickInvite(){
+    //this.clipboard.copy(this.router.url);
     console.log("INVITACION");
   }
 

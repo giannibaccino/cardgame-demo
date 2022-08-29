@@ -26,6 +26,6 @@ export class ListGameComponent implements OnInit {
   }
 
   startGame(){
-    console.log("JUEGO EMPEZADO");
+    this.router.navigate(['board']);
   }
 }

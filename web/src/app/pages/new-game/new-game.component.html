@@ -1,4 +1,21 @@
-<h3>Crear Juego</h3>
+<div class="displayTable">
+  <div class="displayTableCell">
+    <div class="crear">
+      <h3>Crear Juego</h3>
+      <div class="selector" *ngFor="let jugador of jugadores">
+        <input
+          type="checkbox"
+          name="{{ jugador.uid }}"
+          [value]="jugador.uid"
+          (change)="getJugador($event, jugador)"
+        />{{ jugador.alias }}
+      </div>
+      <button type="submit" (click)="onSubmit()">Crear Juego</button>
+    </div>
+  </div>
+</div>
+
+<!--<h3>Crear Juego</h3>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <select formControlName="jugador"  multiple>
         <option [ngValue]="null" disabled>Seleccione un jugador</option>
@@ -8,5 +25,4 @@
       </select> 
       <br />
    <button type="submit">Crear Juego</button>
-</form>
-
+</form>-->

@@ -13,9 +13,7 @@
     width: 25vw;
     margin: auto;
     text-align: center;
-}
-.container{
-   border: solid 2px rgb(207, 207, 207);
+    background-color: white;
 }
 
 .create-btn{
@@ -76,12 +74,19 @@
     border-radius: 8px;
 }
 
-h4{
+.H4{
     background-color: rgb(198, 198, 198);
-    margin: 0px;
+    margin: auto;
+    display: flex;
+    align-items: center;
     height: 30px;
 }
 
-h4:hover{
+h4{
+    margin: auto;
+}
+
+.invite:hover{
+    cursor: pointer;
     color: #2671fc;
 }

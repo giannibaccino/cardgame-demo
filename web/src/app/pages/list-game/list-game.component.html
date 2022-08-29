@@ -1,5 +1,30 @@
-<h1>Lista de juegos ñery</h1>
-<li *ngFor="let juego of juegos; index as i;">
-Juego {{i}}: Jugadores: {{juego.cantidadJugadores}}, Id: {{juego.id}}
-<button value="{{juego.id}}" (click)="startGame()">Start</button>
-</li>
+<div class="displayTable">
+  <div class="displayTableCell">
+    <div class="lista">
+      <h1>Lista de juegos</h1>
+      <table class="gamelist">
+        <tr>
+          <th>Juegos</th>
+          <th>Jugadores</th>
+          <th></th>
+        </tr>
+
+        <tr align="center" *ngFor="let juego of juegos; index as i">
+          <td>
+            Juego {{ i + 1 }}
+          </td>
+
+          <td>
+            <span class="cant">{{ juego.cantidadJugadores }}</span>
+          </td>
+
+          <td>
+            <button value="{{ juego.id }}" (click)="startGame()">
+              Iniciar
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

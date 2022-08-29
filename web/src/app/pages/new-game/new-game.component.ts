@@ -16,7 +16,8 @@ import { Router } from '@angular/router';
 export class NewGameComponent implements OnInit, OnDestroy {
   form: FormGroup;
   juegoId: string;
-  jugadores?: Jugador[]
+  jugadores?: Jugador[];
+  jugadoresSelected: Jugador[] = new Array<Jugador>();;
 
   constructor(private api: ApiService, private auth: AuthService, private socket:WebsocketService, private router:Router) {
     this.form = new FormGroup({
@@ -44,12 +45,26 @@ export class NewGameComponent implements OnInit, OnDestroy {
     this.socket.close();
   }
 
+  getJugador(e:any, player:Jugador){ 
+    if(e.target.checked){
+      console.log(player.alias + " Checked");
+      this.jugadoresSelected?.push(player);
+    }
+    else{
+      console.log(player.alias + " UnChecked");
+      this.jugadoresSelected = this.jugadoresSelected?.filter(m => m != player);
+    }
+  }
+
   onSubmit(){
- 
     const jugadores: any = {};
-    this.form.value.jugador.forEach((user:any) => {
+    this.jugadoresSelected?.forEach((user:any) => {
       jugadores[user.uid] = user.alias;
     })
+
+    // this.form.value.jugador.forEach((user:any) => {
+    //   jugadores[user.uid] = user.alias;
+    // })
 
     this.api.crearJuego({
       jugadorPrincipalId: this.auth.user.uid,

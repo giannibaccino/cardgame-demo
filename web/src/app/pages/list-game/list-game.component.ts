@@ -25,7 +25,14 @@ export class ListGameComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  joinGame(){
+    console.log("Game Joined");
+    this.router.navigate(['board']);
+  }
+
   startGame(){
+    console.log("Game Started");
+    //this.api.iniciarJuego();
     this.router.navigate(['board']);
   }
 }

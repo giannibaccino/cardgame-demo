@@ -8,11 +8,13 @@ import { ListGameComponent } from './pages/list-game/list-game.component';
 // route guard
 import { AuthGuard } from './shared/guard/auth.guard';
 import { BoardComponent } from './pages/board/board.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/menu', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'menu', component: MenuComponent},
+  { path: 'home', component: HomeComponent},
   { path: 'new', component: NewGameComponent, canActivate: [AuthGuard] },
   { path: 'list', component: ListGameComponent, canActivate: [AuthGuard] },
   { path: 'board', component: BoardComponent, canActivate: [AuthGuard] }

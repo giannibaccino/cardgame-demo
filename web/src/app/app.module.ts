@@ -19,6 +19,7 @@ import { BoardComponent } from './pages/board/board.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HeaderComponent } from './componets/header/header.component'
+import { MenuComponent } from './pages/menu/menu.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { HeaderComponent } from './componets/header/header.component'
     BoardComponent,
     HomeComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

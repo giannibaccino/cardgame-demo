@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 //TODO: componente home para redireccion y enrutado
 @Component({
@@ -18,9 +19,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['new']);
   }
 
-  onclickInvite(){
-    //this.clipboard.copy(this.router.url);
-    console.log("INVITACION");
+  invitation(){
+    alert("Comparte este URL : http://localhost:4200/menu");
   }
 
   onclickList(){

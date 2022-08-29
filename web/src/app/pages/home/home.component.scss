@@ -1,92 +1,89 @@
-.frame{
-    height: 75vh;
-    width: 50vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    margin: auto;
-    font-family: Arial, Helvetica, sans-serif;
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  background: white;
+  padding: 30px 40px 10px;
+  text-align: center;
 }
 
-.mainContainer{
-    width: 25vw;
-    margin: auto;
-    text-align: center;
-    background-color: white;
+.mainContainer {
+  margin: 0 auto;
+  max-width: 800px;
+  background: white;
+  padding: 30px 40px 10px;
+  text-align: center;
 }
 
-.create-btn{
-    background-color: #2671fc;
-    border: solid 1px #2671fc;
-    color: white;
-    padding: 10px;
-    width: 20vw;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px 10px;
-    border-radius: 8px;
+.create-btn {
+  background-color: #2671fc;
+  border: solid 1px #2671fc;
+  color: white;
+  padding: 10px;
+  width: 20vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px 10px;
+  border-radius: 8px;
 }
 
-.create-btn:hover{
-    cursor: pointer;
-    background-color: white;
-    border: solid 1px #2671fc;
-    color: #2671fc;
-    padding: 10px;
-    width: 20vw;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px 10px;
-    border-radius: 8px;
+.create-btn:hover {
+  cursor: pointer;
+  background-color: white;
+  border: solid 1px #2671fc;
+  color: #2671fc;
+  padding: 10px;
+  width: 20vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px 10px;
+  border-radius: 8px;
 }
 
-.consult-btn{
-    background-color: #575757;
-    border: solid 1px #575757;
-    color: white;
-    padding: 10px;
-    width: 20vw;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 30px 2px;
-    border-radius: 8px;
+.consult-btn {
+  background-color: #575757;
+  border: solid 1px #575757;
+  color: white;
+  padding: 10px;
+  width: 20vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px 2px;
+  border-radius: 8px;
 }
 
-.consult-btn:hover{
-    cursor: pointer;
-    background-color: white;
-    border: solid 1px #575757;
-    color: #575757;
-    padding: 10px;
-    width: 20vw;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 30px 2px;
-    border-radius: 8px;
+.consult-btn:hover {
+  cursor: pointer;
+  background-color: white;
+  border: solid 1px #575757;
+  color: #575757;
+  padding: 10px;
+  width: 20vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px 2px;
+  border-radius: 8px;
 }
 
-.H4{
-    background-color: rgb(198, 198, 198);
-    margin: auto;
-    display: flex;
-    align-items: center;
-    height: 30px;
+.gris {
+  background-color: rgb(198, 198, 198);
+  display: flex;
+  align-items: center;
+  height: 60px;
 }
 
-h4{
-    margin: auto;
+h4 {
+  margin: auto;
 }
 
-.invite:hover{
-    cursor: pointer;
-    color: #2671fc;
+.invite:hover {
+  cursor: pointer;
+  color: #2671fc;
 }

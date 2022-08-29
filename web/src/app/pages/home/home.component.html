@@ -2,7 +2,7 @@
   <div class="displayTableCell">
     <div class="mainContainer">
       <div class="container">
-        <div class="H4"><h4>Inicio</h4></div>
+        <div class="gris"><h4>Inicio</h4></div>
         <h1>Indicaciones de Juego</h1>
         <p>
           Para iniciar el juego debes estar registrado, incluso los jugadores
@@ -10,7 +10,7 @@
         <button class="create-btn" (click)="onclickCreate()">
           Crear Juego
         </button>
-        <div class="H4"><h4 class="invite">Invita a tus amigos</h4></div>
+        <div class="gris"><h4 class="invite" (click)="invitation()">Invita a tus amigos</h4></div>
       </div>
       <button class="consult-btn" (click)="onclickList()">
         Consultar Juegos Creados
@@ -18,3 +18,10 @@
     </div>
   </div>
 </div>
+<style>
+  .displayTable{
+  background-image: url('https://wallpaper.dog/large/20461297.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+</style>

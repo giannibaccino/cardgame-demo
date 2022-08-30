@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CrearJuegoCommand } from '../commands/crearJuegoCommand';
+import { CrearRondaCommand } from '../commands/crearRondaCommand';
 import { IniciarJuegoCommand } from '../commands/iniciarJuegoCommand';
+import { IniciarRondaCommand } from '../commands/iniciarRondaCommand';
+import { PonerCartaEnTableroCommand } from '../commands/ponerCartaEnTableroCommand';
 import { Jugador } from '../model/juego';
 import { User } from '../model/user';
 
@@ -23,10 +26,21 @@ export class ApiService {
   }
 
   iniciarJuego(command: IniciarJuegoCommand){
-    return this.http.put(environment.apiBase + '/juego/iniciar', command);
+    return this.http.post(environment.apiBase + '/juego/iniciar', command);
   }
 
- 
+  crearRonda(command: CrearRondaCommand){
+    return this.http.post(environment.apiBase + '/juego/ronda', command);
+  }
+
+  iniciarRonda(command: IniciarRondaCommand){
+    return this.http.post(environment.apiBase + 'juego/ronda/iniciar', command);
+  }
+
+  ponerCarta(command: PonerCartaEnTableroCommand){
+    return this.http.post(environment.apiBase + 'juego/poner', command);
+  }
+
   getJugadores(): Observable<Jugador[]> {
     return this.afs.collection<User>(`users`).snapshotChanges().pipe(map((actions) => {
       const jugadores = actions.map(item => {

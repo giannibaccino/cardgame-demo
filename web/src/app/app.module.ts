@@ -17,9 +17,19 @@ import {ApiService} from './shared/services/api.service';
 import { ListGameComponent } from './pages/list-game/list-game.component';
 import { BoardComponent } from './pages/board/board.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
 import { HeaderComponent } from './componets/header/header.component'
 import { MenuComponent } from './pages/menu/menu.component';
+import { LoginModule } from './login/login.module';
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -29,7 +39,6 @@ import { MenuComponent } from './pages/menu/menu.component';
     ListGameComponent,
     BoardComponent,
     HomeComponent,
-    LoginComponent,
     HeaderComponent,
     MenuComponent
   ],
@@ -43,6 +52,16 @@ import { MenuComponent } from './pages/menu/menu.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    LoginModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

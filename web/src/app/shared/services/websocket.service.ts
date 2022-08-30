@@ -25,7 +25,7 @@ export class WebsocketService {
 
   open(juegoId:string){
       this.subject = webSocket(environment.socketBase + juegoId)
-      
+      return this.subject;
   }
 
   close() {

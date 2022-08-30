@@ -30,7 +30,7 @@ export class ApiService {
   }
 
   crearRonda(command: CrearRondaCommand){
-    return this.http.post(environment.apiBase + '/juego/ronda', command);
+    return this.http.post(environment.apiBase + '/juego/crear/ronda', command);
   }
 
   iniciarRonda(command: IniciarRondaCommand){

@@ -28,7 +28,7 @@ export class ListGameComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    //this.socket.close();
+    this.socket.close();
   }
 
   joinGame(id: string){
@@ -39,6 +39,7 @@ export class ListGameComponent implements OnInit, OnDestroy {
     this.socket.open(id);
     this.socket.listener(
       (event) => {
+        console.log(event);
         if(event.type == "cardgame.tablerocreado"){
           this.api.crearRonda({
           juegoId: id,

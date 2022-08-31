@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Carta } from 'src/app/shared/model/tablero';
+import { Carta } from 'src/app/shared/model/mazo';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { WebsocketService } from 'src/app/shared/services/websocket.service';
@@ -41,7 +41,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       this.api.getTablero(this.juegoId).subscribe((element) => {
         
-        this.cartasDelTablero = Object.entries(element.tablero.cartas).map((a: any) => {
+        this.cartasDelTablero = Object.entries(element.tablero.cartas).flatMap((a: any) => {
           return a[1];
         });
         this.tiempo = element.tiempo;
@@ -50,8 +50,10 @@ export class BoardComponent implements OnInit, OnDestroy {
         this.numeroRonda = element.ronda.numero;
       });
 
-      this.ws.open(this.juegoId).listener(
-        (event:any) => {
+      this.ws.open(this.juegoId);
+      this.ws.listener(
+        (event) => {
+          console.log(event);
           if (event.type === 'cardgame.ponercartaentablero') {
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
@@ -72,11 +74,10 @@ export class BoardComponent implements OnInit, OnDestroy {
             this.roundStarted = true;
           }
 
-          if(event.type === 'cargame.rondaterminada'){
+          if(event.type === 'cardgame.rondaterminada'){
             this.roundStarted = false;
           }
-        }
-      );
+        });
     });
   }
 

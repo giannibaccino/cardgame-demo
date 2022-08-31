@@ -24,11 +24,12 @@ export class WebsocketService {
   }
 
   open(juegoId:string){
-      this.subject = webSocket(environment.socketBase + juegoId)
+      this.subject = webSocket(environment.socketBase + juegoId);
       return this.subject;
   }
 
   close() {
-    this.subject.unsubscribe();
+    if(this.subject)
+      this.subject.unsubscribe();
   }
 }

@@ -56,8 +56,8 @@ public class QueryHandle {
     @Bean
     public RouterFunction<ServerResponse> getMazo() {
         return route(
-                GET("/juego/mazo/{uid}/{juegoId}"),
-                request -> template.findOne(filterByUIdAndJuegoId(request.pathVariable("uid"),request.pathVariable("juegoId")), MazoViewModel.class, "gameview")
+                GET("/juego/mazo/{juegoId}/{uid}"),
+                request -> template.findOne(filterByUidAndId(request.pathVariable("uid"),request.pathVariable("juegoId")), MazoViewModel.class, "mazoview")
                         .flatMap(element -> ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .body(BodyInserters.fromPublisher(Mono.just(element), MazoViewModel.class)))
@@ -65,21 +65,14 @@ public class QueryHandle {
     }
 
     private Query filterByUId(String uid) {
-        return new Query(
-                Criteria.where("uid").is(uid)
-        );
+        return new Query(Criteria.where("uid").is(uid));
     }
 
     private Query filterById(String juegoId) {
-        return new Query(
-                Criteria.where("_id").is(juegoId)
-        );
+        return new Query(Criteria.where("_id").is(juegoId));
     }
 
-    private Query filterByUIdAndJuegoId(String uid, String juegoId) {
-        return new Query(
-                Criteria.where("uid").is(uid)
-                        .and("juegoId").is(juegoId)
-        );
+    private Query filterByUidAndId(String uid, String juegoId) {
+        return new Query(Criteria.where("juegoId").is(juegoId).and("uid").is(uid));
     }
 }

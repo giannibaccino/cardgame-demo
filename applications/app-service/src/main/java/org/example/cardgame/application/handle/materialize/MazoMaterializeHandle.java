@@ -35,7 +35,6 @@ public class MazoMaterializeHandle {
         this.template = template;
     }
 
-    //TODO: handle Jugador Agregado
     @EventListener
     public void handleJugadorAgregado(JugadorAgregado event) {
         var mazo = event.getMazo().value();

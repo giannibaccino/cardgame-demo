@@ -13,6 +13,7 @@ import { WebsocketService } from 'src/app/shared/services/websocket.service';
 })
 export class BoardComponent implements OnInit, OnDestroy {
 
+  uname: string = "";
   cartasDelJugador: Carta[] = [];
   cartasDelTablero: Carta[] = [];
   tiempo: number = 0;
@@ -42,7 +43,6 @@ export class BoardComponent implements OnInit, OnDestroy {
       });
 
       this.api.getTablero(this.juegoId).subscribe((element) => {
-        console.log(element);
         this.cartasDelTablero = Object.entries(element.tablero.cartas).flatMap((a: any) => {
           return a[1];
         });
@@ -55,7 +55,6 @@ export class BoardComponent implements OnInit, OnDestroy {
       this.ws.open(this.juegoId);
       this.ws.listener(
         (event) => {
-          console.log(event);
           if (event.type === 'cardgame.ponercartaentablero') {
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
@@ -78,6 +77,7 @@ export class BoardComponent implements OnInit, OnDestroy {
           }
 
           if(event.type === 'cardgame.rondaterminada'){
+            this.cartasDelTablero = [];
             this.roundStarted = false;
             this.tableroHabilitado = false;
           }
@@ -86,13 +86,29 @@ export class BoardComponent implements OnInit, OnDestroy {
             this.tiempo = event.tiempo;
             this.jugadoresRonda = event.ronda.jugadores.length;
             this.numeroRonda = event.ronda.numero;
-            this.tableroHabilitado = event.ronda.habilitado;
+            this.tableroHabilitado = false;
             this.roundStarted = event.ronda.habilitado;
           }
 
           if(event.type === 'cardgame.juegofinalizado'){
             alert("Juego finalizado - Ganador: " + event.alias);
             this.router.navigate(['home']);
+          }
+
+          if(event.type === 'cardgame.cartasasignadasajugador'){
+            if(event.ganadorId.uuid === this.uid){
+              event.cartasApuesta.forEach((carta: any) => {
+                this.cartasDelJugador.push({
+                  cartaId: carta.cartaId.uuid,
+                  poder: carta.poder,
+                  estaOculta: carta.estaOculta,
+                  estaHabilitada: carta.estaHabilitada
+                });
+              });
+              alert("Ganaste la ronda!")
+            }else{
+              alert("Perdiste la ronda :(")
+            }
           }
         });
     });

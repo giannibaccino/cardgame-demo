@@ -38,8 +38,6 @@ Udomain/src/main/java/org/example/cardgame/domain/events/TiempoCambiadoDelTabler
 Kdomain/src/main/java/org/example/cardgame/domain/values/CartaMaestraId.java,6/6/66812303ab94041ba8dab90feb3be7ab28329810
 v
 Fdomain/src/main/java/org/example/cardgame/domain/values/JugadorId.java,4/c/4c84e63b5a561a3602ef0f8cd57e585c97404e79
-m
-=domain/src/main/java/org/example/cardgame/domain/Jugador.java,7/e/7e017228650dc17dfe18c23b5d6849fc0e8549fa
 t
 Ddomain/src/main/java/org/example/cardgame/domain/JugadorFactory.java,5/d/5d05bb9d0f52d5986cde93b33a1094a8bc400cc0
 m
@@ -88,8 +86,6 @@ Vbusiness/src/test/java/org/example/cardgame/usecase/usecase/CrearJuegoUseCaseTe
 Sbusiness/src/main/java/org/example/cardgame/usecase/gateway/model/CartaMaestra.java,6\2\62428f71a18069cbb7d8270fb89a6346a2595575
 à
 Xbusiness/src/test/java/org/example/cardgame/usecase/usecase/IniciarJuegoUseCaseTest.java,d\1\d1a16e0fc41ec928cd1090419e369bc213787781
-v
-Fdomain/src/main/java/org/example/cardgame/domain/JuegoEventChange.java,3\a\3ad883dd06b0fa1774bbcb4ada1c1353a4e47171
 Z
 *web/src/app/pages/board/board.component.ts,d\9\d98562483bfebc709680e2064f3d36136583511f
 X
@@ -98,10 +94,6 @@ b
 2web/src/app/pages/list-game/list-game.component.ts,8\e\8edbed33794597098539f263b7c4bb2bd4704b27
 è
 _business/src/test/java/org/example/cardgame/usecase/usecase/PonerCartaEnTableroUseCaseTest.java,4\2\42330a948b31a8327c7fba11d31cffb2462fc34d
-q
-Adomain/src/main/java/org/example/cardgame/domain/values/Mazo.java,a\5\a5becc604365569cf877051ee46b419041cfe3d8
-k
-;domain/src/main/java/org/example/cardgame/domain/Juego.java,9\b\9b309278eca94a21a1addc1828d46895146ac11e
 é
 ^applications/app-service/src/main/java/org/example/cardgame/application/ApplicationConfig.java,d\0\d0a5a4f83244018ca1a937b2b104ef1a06a5637a
 ú
@@ -144,11 +136,15 @@ _applications/app-service/src/main/java/org/example/cardgame/application/handle/
 aapplications/app-service/src/main/java/org/example/cardgame/application/handle/CommandHandle.java,1\b\1b131b7e0b03c237b8d6408a499a7361209335b9
 {
 Kdomain/src/main/java/org/example/cardgame/domain/events/RondaTerminada.java,c\7\c741e1adb3ff3df7393dd96517639b74be51fac5
-¶
-vapplications/app-service/src/main/java/org/example/cardgame/application/handle/usecase/CuentaRegresivaEventHandle.java,7\8\781be30faf9d6e146f6155683087eeafd8837179
 °
 qapplications/app-service/src/main/java/org/example/cardgame/application/handle/usecase/CrearRondaEventHandle.java,a\5\a542d11f6b9643153b50e7ac3b42177f7d7972ed
 |
 Ldomain/src/main/java/org/example/cardgame/domain/events/JuegoFinalizado.java,c\7\c7a049e24882ee5db7c687ac86f1890abe1fbb0e
 ®
 xapplications/app-service/src/main/java/org/example/cardgame/application/handle/usecase/DeterminarGanadorEventHandle.java,9\7\978c8a549e1f15c2058f998e237fdfccf7c5c6aa
+ç
+]business/src/test/java/org/example/cardgame/usecase/usecase/DeterminarGanadorUseCaseTest.java,5\b\5b5cf4e7b83f80f6f8c32dddc5dd8d5cd613f5d7
+í
+bbusiness/src/test/java/org/example/cardgame/usecase/usecase/IniciarCuentaRegresivaUseCaseTest.java,5\7\57c4e731f4fb1422758fd6f4ac39bf828f1160f2
+â
+Ybusiness/src/main/java/org/example/cardgame/usecase/usecase/DeterminarGanadorUseCase.java,0\b\0b108081cde5bd75774155a1754a74986ae72073

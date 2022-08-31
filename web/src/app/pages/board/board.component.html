@@ -7,7 +7,7 @@
             <div class="pb-2 mb-3 border-bottom">
                 <h1 class="h2">Cuenta Regresiva {{tiempo}}s</h1>
                 <h4>RONDA # {{numeroRonda}} Jugadores [{{jugadoresRonda}}/{{jugadoresTablero}}]</h4>
-                <button mat-button (click)="iniciarRonda()" disabled="{{roundStarted}}" color="primary">
+                <button mat-button (click)="iniciarRonda()" disabled="{{roundStarted}}">
                    INICIAR
                 </button>
             </div>
@@ -15,11 +15,11 @@
                 <mat-grid-list cols="6" rowHeight="1:2">
                     <mat-grid-tile *ngFor="let card of cartasDelTablero">
                         <mat-card class="m-2">
-                            <mat-card-title-group>
-                                <img mat-card-image src="/assets/{{card.cartaId}}" />
+                            <mat-card-title-group >
+                                <img mat-card-image src="/assets/backcard.jpg" />
                             </mat-card-title-group>
-                            <mat-card-content>
-                                Poder ?
+                            <mat-card-content >
+                                Poder ?{{uname}}
                             </mat-card-content>
                         </mat-card>
                     </mat-grid-tile>
@@ -41,7 +41,7 @@
                         </mat-card-content>
 
                         <mat-card-actions>
-                            <button mat-button (click)="poner(card.cartaId)" color="primary" disabled="{{!card.estaHabilitada}}">
+                            <button mat-button disabled="{{!tableroHabilitado}}" (click)="poner(card.cartaId)">
                                 MOVER A TABLERO
                             </button>
                         </mat-card-actions>

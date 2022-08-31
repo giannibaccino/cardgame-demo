@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Carta } from 'src/app/shared/model/mazo';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -22,12 +22,14 @@ export class BoardComponent implements OnInit, OnDestroy {
   juegoId: string = "";
   uid: string = "";
   roundStarted:boolean = false;
+  tableroHabilitado:boolean = false;
 
   constructor(
     public api: ApiService,
     public authService: AuthService,
     public ws: WebsocketService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
 
   }
 
@@ -40,7 +42,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       });
 
       this.api.getTablero(this.juegoId).subscribe((element) => {
-        
+        console.log(element);
         this.cartasDelTablero = Object.entries(element.tablero.cartas).flatMap((a: any) => {
           return a[1];
         });
@@ -72,10 +74,25 @@ export class BoardComponent implements OnInit, OnDestroy {
 
           if(event.type === 'cardgame.rondainiciada'){
             this.roundStarted = true;
+            this.tableroHabilitado = true;
           }
 
           if(event.type === 'cardgame.rondaterminada'){
             this.roundStarted = false;
+            this.tableroHabilitado = false;
+          }
+
+          if(event.type == 'cardgame.rondacreada'){
+            this.tiempo = event.tiempo;
+            this.jugadoresRonda = event.ronda.jugadores.length;
+            this.numeroRonda = event.ronda.numero;
+            this.tableroHabilitado = event.ronda.habilitado;
+            this.roundStarted = event.ronda.habilitado;
+          }
+
+          if(event.type === 'cardgame.juegofinalizado'){
+            alert("Juego finalizado - Ganador: " + event.alias);
+            this.router.navigate(['home']);
           }
         });
     });

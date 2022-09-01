@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Carta } from 'src/app/shared/model/mazo';
+import { Jugador } from 'src/app/shared/model/juego';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { WebsocketService } from 'src/app/shared/services/websocket.service';
@@ -12,8 +13,10 @@ import { WebsocketService } from 'src/app/shared/services/websocket.service';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit, OnDestroy {
+  tirador: string[] = [];
+  jugadores: {uid:string, alias:string}[] = [];
+  jugadoresIds: string[] = [];
 
-  uname: string = "";
   cartasDelJugador: Carta[] = [];
   cartasDelTablero: Carta[] = [];
   tiempo: number = 0;
@@ -43,6 +46,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       });
 
       this.api.getTablero(this.juegoId).subscribe((element) => {
+        this.jugadoresIds = element.tablero.jugadores;
         this.cartasDelTablero = Object.entries(element.tablero.cartas).flatMap((a: any) => {
           return a[1];
         });
@@ -52,10 +56,17 @@ export class BoardComponent implements OnInit, OnDestroy {
         this.numeroRonda = element.ronda.numero;
       });
 
+      this.api.getJugadores().subscribe((jugadores) => jugadores.forEach(jugador => {
+        if (this.jugadoresIds.includes(jugador.uid)) 
+          this.jugadores.push({uid:jugador.uid, alias:jugador.alias});
+      }));
+
       this.ws.open(this.juegoId);
       this.ws.listener(
         (event) => {
           if (event.type === 'cardgame.ponercartaentablero') {
+            this.tirador.push(this.jugadores.find(obj => obj.uid === event.jugadorId.uuid)?.alias as string);
+
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
               poder: event.carta.poder,
@@ -77,6 +88,7 @@ export class BoardComponent implements OnInit, OnDestroy {
           }
 
           if(event.type === 'cardgame.rondaterminada'){
+            this.tirador = [];
             this.cartasDelTablero = [];
             this.roundStarted = false;
             this.tableroHabilitado = false;

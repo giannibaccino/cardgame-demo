@@ -13,13 +13,13 @@
             </div>
             <div class="inner-adjust">
                 <mat-grid-list cols="6" rowHeight="1:2">
-                    <mat-grid-tile *ngFor="let card of cartasDelTablero">
+                    <mat-grid-tile *ngFor="let card of cartasDelTablero; index as k" >
                         <mat-card class="m-2">
                             <mat-card-title-group >
                                 <img mat-card-image src="/assets/backcard.jpg" />
                             </mat-card-title-group>
-                            <mat-card-content >
-                                Poder ?{{uname}}
+                            <mat-card-content>
+                                {{tirador[k]}}
                             </mat-card-content>
                         </mat-card>
                     </mat-grid-tile>

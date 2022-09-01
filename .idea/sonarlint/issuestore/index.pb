@@ -106,8 +106,6 @@ Rbusiness/src/main/java/org/example/cardgame/usecase/usecase/UseCaseForCommand.j
 gapplications/app-service/src/main/java/org/example/cardgame/application/handle/model/ErrorResponse.java,d\6\d6175c962f5abc5ef973253ccb7431171ce4b679
 ê
 `applications/app-service/src/main/java/org/example/cardgame/application/handle/ErrorHandler.java,a\e\aed25e7ad7e33c8c4231e44e7e5d8a2c0edd94dd
-ö
-japplications/app-service/src/main/java/org/example/cardgame/application/handle/model/TableroViewModel.java,0\7\07f087d3889b072b76daf8c38fda617df33304ae
 é
 ^business/src/main/java/org/example/cardgame/usecase/usecase/IniciarCuentaRegresivaUseCase.java,3\6\3655085e9b05bcadcdccc42284b680b94a480fca
 Å

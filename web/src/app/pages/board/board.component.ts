@@ -61,7 +61,6 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       this.api.getJugadores().subscribe((jugadores) => jugadores.forEach(jugador => {
         this.registro = new Map(this.jugadoresIds.map(jugid => {return [jugid, 0];}))
-        console.log(this.registro); //!!!!!!!!!!!!!!!!
         if (this.jugadoresIds.includes(jugador.uid)) 
           this.jugadores.push({uid:jugador.uid, alias:jugador.alias});
       }));
@@ -72,7 +71,6 @@ export class BoardComponent implements OnInit, OnDestroy {
           if (event.type === 'cardgame.ponercartaentablero') {
             this.tirador.push(this.jugadores.find(obj => obj.uid === event.jugadorId.uuid)as Jugador);
             this.registro.set(this.tirador[this.tirador.length - 1].uid, this.registro.get(this.uid)as number + 1);
-            console.log(this.registro); //!!!!!!!!!!!!!!!!
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
               poder: event.carta.poder,
@@ -83,7 +81,6 @@ export class BoardComponent implements OnInit, OnDestroy {
           
           if (this.registro.get(this.uid)as number >= 2) 
             this.tira = false;
-          console.log("Tira: " + this.tira); //!!!!!!!!!!!!!!!!
 
           if (event.type === 'cardgame.cartaquitadadelmazo') {
             this.cartasDelJugador = this.cartasDelJugador

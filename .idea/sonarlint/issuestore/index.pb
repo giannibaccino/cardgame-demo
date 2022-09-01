@@ -140,8 +140,6 @@ qapplications/app-service/src/main/java/org/example/cardgame/application/handle/
 Ldomain/src/main/java/org/example/cardgame/domain/events/JuegoFinalizado.java,c\7\c7a049e24882ee5db7c687ac86f1890abe1fbb0e
 ®
 xapplications/app-service/src/main/java/org/example/cardgame/application/handle/usecase/DeterminarGanadorEventHandle.java,9\7\978c8a549e1f15c2058f998e237fdfccf7c5c6aa
-ç
-]business/src/test/java/org/example/cardgame/usecase/usecase/DeterminarGanadorUseCaseTest.java,5\b\5b5cf4e7b83f80f6f8c32dddc5dd8d5cd613f5d7
 í
 bbusiness/src/test/java/org/example/cardgame/usecase/usecase/IniciarCuentaRegresivaUseCaseTest.java,5\7\57c4e731f4fb1422758fd6f4ac39bf828f1160f2
 â

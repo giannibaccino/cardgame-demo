@@ -60,13 +60,12 @@ export class BoardComponent implements OnInit, OnDestroy {
         if (this.jugadoresIds.includes(jugador.uid)) 
           this.jugadores.push({uid:jugador.uid, alias:jugador.alias});
       }));
-
+      
       this.ws.open(this.juegoId);
       this.ws.listener(
         (event) => {
           if (event.type === 'cardgame.ponercartaentablero') {
             this.tirador.push(this.jugadores.find(obj => obj.uid === event.jugadorId.uuid)?.alias as string);
-
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
               poder: event.carta.poder,
@@ -144,5 +143,4 @@ export class BoardComponent implements OnInit, OnDestroy {
       juegoId: this.juegoId,
     }).subscribe();
   }
-
 }

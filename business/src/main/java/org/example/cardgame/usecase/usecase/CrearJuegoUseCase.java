@@ -26,13 +26,16 @@ public class CrearJuegoUseCase extends UseCaseForCommand<CrearJuegoCommand> {
     public Flux<DomainEvent> apply(Mono<CrearJuegoCommand> input) {
         return listaDeCartaService.obtenerCartasDeMarvel().collectList()
                 .flatMapMany(cartas -> input.flatMapIterable(command -> {
-                    var factory = new JugadorFactory();
-                    command.getJugadores()
-                            .forEach((id, alias) ->
-                                    factory.agregarJugador(JugadorId.of(id), alias, generarMazo(cartas))
-                            );
-                    var juego = new Juego(JuegoId.of(command.getJuegoId()), JugadorId.of(command.getJugadorPrincipalId()), factory);
-                    return juego.getUncommittedChanges();
+                    if(command.getJugadores().size() > 1) {
+                        var factory = new JugadorFactory();
+                        command.getJugadores()
+                                .forEach((id, alias) ->
+                                        factory.agregarJugador(JugadorId.of(id), alias, generarMazo(cartas))
+                                );
+                        var juego = new Juego(JuegoId.of(command.getJuegoId()), JugadorId.of(command.getJugadorPrincipalId()), factory);
+                        return juego.getUncommittedChanges();
+                    }
+                    throw new IllegalArgumentException("Se necesitan 2 jugadores para crear un juego");
                 }));
 
     }

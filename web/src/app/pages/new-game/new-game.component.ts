@@ -69,6 +69,7 @@ export class NewGameComponent implements OnInit, OnDestroy {
       jugadorPrincipalId: this.auth.user.uid,
       juegoId: this.juegoId,
       jugadores:jugadores
-    }).subscribe();
+    }).subscribe({error: err => alert(err.error.message)}
+    );
   }
 }

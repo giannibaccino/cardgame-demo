@@ -111,7 +111,7 @@ export class BoardComponent implements OnInit, OnDestroy {
             this.jugadoresRonda = event.ronda.jugadores.length;
             this.numeroRonda = event.ronda.numero;
             this.tableroHabilitado = false;
-            this.roundStarted = event.ronda.habilitado;
+            this.roundStarted = false;
           }
 
           if(event.type === 'cardgame.juegofinalizado'){
@@ -133,7 +133,7 @@ export class BoardComponent implements OnInit, OnDestroy {
             }else{
               alert("Perdiste la ronda :(")
             }
-            window.location.reload();
+            //window.location.reload();
           }
         });
     });

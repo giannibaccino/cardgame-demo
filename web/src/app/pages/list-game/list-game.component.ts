@@ -45,7 +45,7 @@ export class ListGameComponent implements OnInit, OnDestroy {
         if(event.type == "cardgame.tablerocreado"){
           this.api.crearRonda({
           juegoId: id,
-          tiempo: 10,
+          tiempo: 20,
           jugadores: event.jugadorIds.map((it:any) => it.uuid) 
           }).subscribe();
         }

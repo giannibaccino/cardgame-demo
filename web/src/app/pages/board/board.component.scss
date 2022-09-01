@@ -5,17 +5,21 @@
 .mat-button:disabled{
     background-color: purple;
     color: gray;
+    text-decoration: line-through;
 }
 
 .mat-button:enabled{
     background-color: darkviolet;
+    border: 1px solid white;
     color: white;
 }
 
 .mat-card-actions{
-    background-color: skyblue;
+    background-color: transparent;
     margin: auto;
-    margin-bottom: 15px;
+    padding-bottom: 15px;
+    position: relative;
+    top: -10px;
 }
 
 .mat-card-content{

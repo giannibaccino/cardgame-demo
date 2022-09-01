@@ -13,8 +13,11 @@ import { WebsocketService } from 'src/app/shared/services/websocket.service';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  tirador: string[] = [];
-  jugadores: {uid:string, alias:string}[] = [];
+  registro: Map<string, number> = new Map;
+  tira:boolean = false;
+
+  tirador: Jugador[] = [];
+  jugadores: Jugador[] = [];
   jugadoresIds: string[] = [];
 
   cartasDelJugador: Carta[] = [];
@@ -57,6 +60,8 @@ export class BoardComponent implements OnInit, OnDestroy {
       });
 
       this.api.getJugadores().subscribe((jugadores) => jugadores.forEach(jugador => {
+        this.registro = new Map(this.jugadoresIds.map(jugid => {return [jugid, 0];}))
+        console.log(this.registro); //!!!!!!!!!!!!!!!!
         if (this.jugadoresIds.includes(jugador.uid)) 
           this.jugadores.push({uid:jugador.uid, alias:jugador.alias});
       }));
@@ -65,7 +70,9 @@ export class BoardComponent implements OnInit, OnDestroy {
       this.ws.listener(
         (event) => {
           if (event.type === 'cardgame.ponercartaentablero') {
-            this.tirador.push(this.jugadores.find(obj => obj.uid === event.jugadorId.uuid)?.alias as string);
+            this.tirador.push(this.jugadores.find(obj => obj.uid === event.jugadorId.uuid)as Jugador);
+            this.registro.set(this.tirador[this.tirador.length - 1].uid, this.registro.get(this.uid)as number + 1);
+            console.log(this.registro); //!!!!!!!!!!!!!!!!
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
               poder: event.carta.poder,
@@ -73,21 +80,30 @@ export class BoardComponent implements OnInit, OnDestroy {
               estaHabilitada: event.carta.estaHabilitada,
             });
           }
+          
+          if (this.registro.get(this.uid)as number >= 2) 
+            this.tira = false;
+          console.log("Tira: " + this.tira); //!!!!!!!!!!!!!!!!
+
           if (event.type === 'cardgame.cartaquitadadelmazo') {
             this.cartasDelJugador = this.cartasDelJugador
               .filter((item) => item.cartaId !==  event.carta.cartaId.uuid);
           }
+
           if (event.type === 'cardgame.tiempocambiadodeltablero') {
             this.tiempo = event.tiempo;
           }
 
           if(event.type === 'cardgame.rondainiciada'){
+            this.tira = true;
             this.roundStarted = true;
             this.tableroHabilitado = true;
           }
 
           if(event.type === 'cardgame.rondaterminada'){
+            this.tira = false;
             this.tirador = [];
+            this.registro = new Map;
             this.cartasDelTablero = [];
             this.roundStarted = false;
             this.tableroHabilitado = false;
@@ -120,6 +136,7 @@ export class BoardComponent implements OnInit, OnDestroy {
             }else{
               alert("Perdiste la ronda :(")
             }
+            window.location.reload();
           }
         });
     });

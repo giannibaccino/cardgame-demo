@@ -170,7 +170,3 @@ m
 [business/src/main/java/org/example/cardgame/usecase/usecase/PonerCartaEnTableroUseCase.java,4\5\45f2291d74174e286b58e30d1071fc85b6766c56
 š
 japplications/app-service/src/main/java/org/example/cardgame/application/handle/model/TableroViewModel.java,0\7\07f087d3889b072b76daf8c38fda617df33304ae
-‚
-Rapplications/app-proxy/src/main/java/org/example/cardgame/websocket/AppSocket.java,2\f\2fa054f5c7e5e8fa7cfcba22d9933a9fca99f66d
-‡
-Wapplications/app-service/src/main/java/org/example/cardgame/application/AppService.java,3\e\3e99e4004b5fb0dfbcdb3cbd6df742c54fde205c

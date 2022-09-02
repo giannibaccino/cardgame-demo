@@ -63,13 +63,16 @@ export class NewGameComponent implements OnInit, OnDestroy {
       jugadores:jugadores
     }).subscribe({
         error: () =>
-        alert('Se necesitan 2 jugadores para crear un juego')
-        // Swal.fire({
-        //   icon: 'warning',
-        //   title: 'Se necesitan 2 jugadores para crear un juego',
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // })
+        Swal.fire({
+          backdrop: 'url(https://wallpaper.dog/large/20461297.jpg)',
+          background: '#7C7C7C',
+          grow: 'fullscreen',
+          icon: 'warning',
+          title: 'Se necesitan 2 jugadores para crear un juego',
+          color: 'white',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     );
   }

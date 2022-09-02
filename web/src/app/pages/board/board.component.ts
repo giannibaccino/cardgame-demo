@@ -120,8 +120,9 @@ export class BoardComponent implements OnInit, OnDestroy {
           if(event.type === 'cardgame.juegofinalizado'){
             setTimeout(() => {
               Swal.fire({
-                title: 'Juego finalizado - Ganador: ' + event.alias,
+                title: 'Juego finalizado' + '\n' + 'Ganador: ' + event.alias,
                 confirmButtonText: 'Cerrar',
+                confirmButtonColor: '#9E1A00',
               }).then(result => {
                 if (result.isConfirmed)
                   this.router.navigate(['home']);
@@ -178,7 +179,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   invitation(){
-    this.clipboard.copy("http://localhost:4200" + this.router.url);
+    this.clipboard.copy(this.router.url);
     Swal.fire({
       icon: 'info',
       title: 'Link Copiado',

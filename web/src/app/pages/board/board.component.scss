@@ -3,8 +3,9 @@
 }
 
 .mat-button:disabled{
-    background-color: purple;
-    color: gray;
+    background-color: gainsboro;
+    border: 1px solid white;
+    color: grey;
     text-decoration: line-through;
 }
 

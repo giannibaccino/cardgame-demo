@@ -1,8 +1,7 @@
 package org.example.cardgame.usecase.usecase;
 
 import co.com.sofka.domain.generic.DomainEvent;
-import org.example.cardgame.domain.command.FinalizarRondaCommand;
-import org.example.cardgame.domain.command.IniciarJuegoCommand;
+import org.example.cardgame.domain.command.events.*;
 import org.example.cardgame.domain.events.*;
 import org.example.cardgame.domain.values.*;
 import org.example.cardgame.usecase.gateway.JuegoDomainEventRepository;
@@ -10,9 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.Answer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;

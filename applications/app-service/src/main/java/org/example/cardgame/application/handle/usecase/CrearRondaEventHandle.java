@@ -37,7 +37,7 @@ public class CrearRondaEventHandle {
                 .map(Identity::value)
                 .collect(Collectors.toSet());
         command.setJuegoId(event.aggregateRootId());
-        command.setTiempo(10);
+        command.setTiempo(20);
         command.setJugadores(jugadores);
         handle.apply(usecase.apply(Mono.just(command))).block();
     }

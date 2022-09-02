@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { v1 as uuidv1 } from 'uuid';
 import { WebsocketService } from 'src/app/shared/services/websocket.service';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-game',
@@ -13,15 +13,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-game.component.scss']
 })
 export class NewGameComponent implements OnInit, OnDestroy {
-  //form: FormGroup;
   juegoId: string;
   jugadores?: Jugador[];
   jugadoresSelected: Jugador[] = new Array<Jugador>();;
 
   constructor(private api: ApiService, private auth: AuthService, private socket:WebsocketService, private router:Router) {
-    //this.form = new FormGroup({
-    //  jugador: new FormControl()
-    //});
     this.juegoId = uuidv1();
      
     api.getJugadores().subscribe((jugadores) => {
@@ -61,15 +57,20 @@ export class NewGameComponent implements OnInit, OnDestroy {
       jugadores[user.uid] = user.alias;
     })
 
-    // this.form.value.jugador.forEach((user:any) => {
-    //   jugadores[user.uid] = user.alias;
-    // })
-
     this.api.crearJuego({
       jugadorPrincipalId: this.auth.user.uid,
       juegoId: this.juegoId,
       jugadores:jugadores
-    }).subscribe({error: err => alert("Se necesitan 2 jugadores para crear un juego")}
+    }).subscribe({
+        error: () =>
+        alert('Se necesitan 2 jugadores para crear un juego')
+        // Swal.fire({
+        //   icon: 'warning',
+        //   title: 'Se necesitan 2 jugadores para crear un juego',
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
+      }
     );
   }
 }

@@ -2,6 +2,7 @@ package org.example.cardgame.usecase.usecase;
 
 import co.com.sofka.domain.generic.DomainEvent;
 import org.example.cardgame.domain.command.FinalizarRondaCommand;
+import org.example.cardgame.domain.command.events.*;
 import org.example.cardgame.domain.events.*;
 import org.example.cardgame.domain.values.*;
 import org.example.cardgame.usecase.gateway.JuegoDomainEventRepository;

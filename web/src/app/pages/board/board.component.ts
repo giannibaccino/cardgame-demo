@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/shared/services/api.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { WebsocketService } from 'src/app/shared/services/websocket.service';
 import { Clipboard } from '@angular/cdk/clipboard';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-board',
@@ -117,8 +118,15 @@ export class BoardComponent implements OnInit, OnDestroy {
           }
 
           if(event.type === 'cardgame.juegofinalizado'){
-            alert("Juego finalizado - Ganador: " + event.alias);
-            this.router.navigate(['home']);
+            setTimeout(() => {
+              Swal.fire({
+                title: 'Juego finalizado - Ganador: ' + event.alias,
+                confirmButtonText: 'Cerrar',
+              }).then(result => {
+                if (result.isConfirmed)
+                  this.router.navigate(['home']);
+              });
+            }, 1700);
           }
 
           if(event.type === 'cardgame.cartasasignadasajugador'){
@@ -131,9 +139,19 @@ export class BoardComponent implements OnInit, OnDestroy {
                   estaHabilitada: carta.estaHabilitada
                 });
               });
-              alert("Ganaste la ronda!")
+              Swal.fire({
+                icon: 'success',
+                title: 'Ganaste la ronda!',
+                showConfirmButton: false,
+                timer: 1500
+              });
             }else{
-              alert("Perdiste la ronda :(")
+              Swal.fire({
+                icon: 'error',
+                title: 'Perdiste la ronda :(',
+                showConfirmButton: false,
+                timer: 1500
+              });
             }
           }
         });
@@ -161,6 +179,11 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   invitation(){
     this.clipboard.copy("http://localhost:4200" + this.router.url);
-    alert("URL COPIADA");
+    Swal.fire({
+      icon: 'info',
+      title: 'Link Copiado',
+      showConfirmButton: false,
+      timer: 1000
+    });
   }
 }

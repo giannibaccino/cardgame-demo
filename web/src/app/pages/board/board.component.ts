@@ -5,8 +5,8 @@ import { Jugador } from 'src/app/shared/model/juego';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { WebsocketService } from 'src/app/shared/services/websocket.service';
+import { Clipboard } from '@angular/cdk/clipboard';
 
-//TODO: componente para el tablero de juego
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -36,7 +36,8 @@ export class BoardComponent implements OnInit, OnDestroy {
     public authService: AuthService,
     public ws: WebsocketService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private clipboard:Clipboard) {
 
   }
 
@@ -59,10 +60,11 @@ export class BoardComponent implements OnInit, OnDestroy {
         this.numeroRonda = element.ronda.numero;
       });
 
-      this.api.getJugadores().subscribe((jugadores) => jugadores.forEach(jugador => {
-        this.registro = new Map(this.jugadoresIds.map(jugid => {return [jugid, 0];}))
-        if (this.jugadoresIds.includes(jugador.uid)) 
-          this.jugadores.push({uid:jugador.uid, alias:jugador.alias});
+      this.api.getJugadores().subscribe((jugadores) => 
+        jugadores.forEach(jugador => {
+          this.registro = new Map(this.jugadoresIds.map(jugid => {return [jugid, 0];}))
+          if (this.jugadoresIds.includes(jugador.uid)) 
+            this.jugadores.push({uid:jugador.uid, alias:jugador.alias});
       }));
       
       this.ws.open(this.juegoId);
@@ -74,7 +76,7 @@ export class BoardComponent implements OnInit, OnDestroy {
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
               poder: event.carta.poder,
-              estaOculta: event.carta.estaOculta,
+              estaOculta: event.carta.estaHabilitada,
               estaHabilitada: event.carta.estaHabilitada,
             });
           }
@@ -133,7 +135,6 @@ export class BoardComponent implements OnInit, OnDestroy {
             }else{
               alert("Perdiste la ronda :(")
             }
-            //window.location.reload();
           }
         });
     });
@@ -156,5 +157,10 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.api.iniciarRonda({
       juegoId: this.juegoId,
     }).subscribe();
+  }
+
+  invitation(){
+    this.clipboard.copy("http://localhost:4200" + this.router.url);
+    alert("URL COPIADA");
   }
 }

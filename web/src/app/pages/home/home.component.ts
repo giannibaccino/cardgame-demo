@@ -19,11 +19,6 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['new']);
   }
 
-  invitation(){
-    this.clipboard.copy("http://localhost:4200/menu");
-    alert("URL COPIADA");
-  }
-
   onclickList(){
     this.router.navigate(['list']);
   }

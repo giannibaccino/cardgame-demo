@@ -69,7 +69,7 @@ export class NewGameComponent implements OnInit, OnDestroy {
       jugadorPrincipalId: this.auth.user.uid,
       juegoId: this.juegoId,
       jugadores:jugadores
-    }).subscribe({error: err => alert(err.error.message)}
+    }).subscribe({error: err => alert("Se necesitan 2 jugadores para crear un juego")}
     );
   }
 }

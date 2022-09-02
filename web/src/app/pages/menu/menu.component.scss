@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rambla:ital,wght@1,700&display=swap');
+
 .contenido {
   margin:auto;
   max-width: 800px;
@@ -6,9 +8,9 @@
 }
 
 h1{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    letter-spacing: 4px;
-    font-size: 40px;
+  font-family: 'Rambla', sans-serif;
+    letter-spacing: 3px;
+    font-size: 60px;
     border: 10px solid black;
     border-radius: 10px;
     background-color: red;

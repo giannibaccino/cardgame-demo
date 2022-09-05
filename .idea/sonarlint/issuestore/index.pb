@@ -180,7 +180,3 @@ Tbusiness/src/main/java/org/example/cardgame/usecase/usecase/IniciarRondaUseCase
 Rbusiness/src/main/java/org/example/cardgame/usecase/usecase/CrearRondaUseCase.java,5\e\5e8c825df78c6820bb2ca1f241389c2c01f742bc
 ¡
 qapplications/app-service/src/main/java/org/example/cardgame/application/handle/usecase/CrearRondaEventHandle.java,a\5\a542d11f6b9643153b50e7ac3b42177f7d7972ed
-‡
-Wapplications/app-service/src/main/java/org/example/cardgame/application/AppService.java,3\e\3e99e4004b5fb0dfbcdb3cbd6df742c54fde205c
-‚
-Rapplications/app-proxy/src/main/java/org/example/cardgame/websocket/AppSocket.java,2\f\2fa054f5c7e5e8fa7cfcba22d9933a9fca99f66d

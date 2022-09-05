@@ -4,6 +4,7 @@
 
 /.idea/
 /frontend/web/.angular/
+/frontend/web/.firebase/
 
 /backend/cardgame.iml
 /backend/applications/app-proxy/app-proxy.iml
